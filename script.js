@@ -11,13 +11,38 @@ const gameBoard = (() => {
     return {board}
 })();
 
-const gameFlow = (() => {
+const game = (() => {
     return {}
 })();
 
 
 //Player factory
-function player() {
-
-    return {}
+function Player(id, turn) {
+    id = id
+    turn = turn
+    return {
+        id,
+        turn
+    }
 }
+
+function displayBoard(move) {
+}
+
+move.forEach(move => {
+    move.addEventListener('click', function() {
+        console.log(this.textContent)
+        console.log(move);
+        if (move.textContent == 'X') {
+            move.textContent = 'O';
+        }
+
+        else {
+            move.textContent = 'X';
+        }
+    })
+})
+
+let player1 = Player(1);
+let player2 = Player(2);
+displayBoard(1);
