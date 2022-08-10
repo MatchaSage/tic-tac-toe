@@ -1,5 +1,5 @@
 //Selects the valid places to make a move
-let move = document.querySelectorAll('.move .move');
+let move = document.querySelectorAll('.move');
 
 //Module for the gameboard
 const gameBoard = (() => {
@@ -11,38 +11,40 @@ const gameBoard = (() => {
     return {board}
 })();
 
-const game = (() => {
-    return {}
+//Where game is displayed
+const displayGame = (() => {
+    const {board} = gameBoard;
+    
+    return{}
 })();
 
+//Where the game is controlled
+const game = (() => {
+    return {
+        
+    }
+})();
 
 //Player factory
-function Player(id, turn) {
-    id = id
-    turn = turn
+function Player(id, turn, mark) {
     return {
         id,
-        turn
+        turn,
+        mark,
+        changeTurn(player){
+            //Sets player turn to oppsite of current
+            player.turn = !player.turn;
+            console.log(player)
+        },
+        //MAYBE PUT EVENT LISTENER HERE I DUNNO
     }
-}
-
-function displayBoard(move) {
 }
 
 move.forEach(move => {
     move.addEventListener('click', function() {
-        console.log(this.textContent)
-        console.log(move);
-        if (move.textContent == 'X') {
-            move.textContent = 'O';
-        }
-
-        else {
-            move.textContent = 'X';
-        }
-    })
+        //Stores index of clicked element in variable
+        let index = Array.from(move.parentElement.children).indexOf(move);
+    });
 })
-
-let player1 = Player(1);
-let player2 = Player(2);
-displayBoard(1);
+let player1 = Player(1,true,'X');
+let player2 = Player(2,false,'O');

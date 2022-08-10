@@ -25,6 +25,7 @@ body {
     display: grid;
     width: 30%;
     height: 60%;
+    grid-template-columns: repeat(3,1fr);
 }
 
 .move.container {
@@ -32,7 +33,7 @@ body {
     flex-direction: row;
 }
 
-.move.container > .move {
+.move {
     color: white;
     font-size: 6.5rem;
     text-align: center;
