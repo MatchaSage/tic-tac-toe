@@ -1,6 +1,7 @@
 //Selects the valid places to make a move
 let move = document.querySelectorAll('.move');
 let header = document.querySelector('.header');
+let restart = document.querySelector('.restart');
 
 let player1 = Player(1,true,'X');
 let player2 = Player(2,false,'O');
@@ -27,6 +28,14 @@ const gameBoard = (() => {
             header.textContent = 'Its a Tie!!';
         }
     }
+
+    let restartGame = function() {
+        board.forEach(move => {
+            move.textContent = '';
+            currentPlayer = player1;
+            updateHeader();
+        })
+    }
     
     let winningMoves = [
         //Vertical wins
@@ -48,12 +57,12 @@ const gameBoard = (() => {
         updateHeader,
         winningMoves,
         winHeader,
+        restartGame,
     }
 })();
 
 //Where the game is controlled
 const game = (() => {
-
     //Checks for both players and lets the one with true turn make a mark, then toggles the turns to opposite on both
     let validateChoice = function(index) {
         if (player1.turn == true) {
@@ -116,7 +125,7 @@ const game = (() => {
 })();
 
 //Player factory
-function Player(id, turn, mark) {
+function Player(id=1, turn, mark) {
     return {
         id,
         turn,
@@ -137,5 +146,7 @@ move.forEach(move => {
         }
     })
 })
+
+restart.addEventListener('click', gameBoard.restartGame);
 
 gameBoard.updateHeader();
